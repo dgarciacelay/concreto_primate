@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_invoice_receipt">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-if="not company">
+                        <!-- Multicompany -->
+                        <t t-if="company_id">
+                            <t t-set="company" t-value="company_id"/>
+                        </t>
+                        <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                            <t t-set="company" t-value="o.company_id.sudo()"/>
+                        </t>
+                        <t t-else="else">
+                            <t t-set="company" t-value="res_company"/>
+                        </t>
+                    </t>
+
+                    <div class="header">
+
+                    </div>
+                    <div class="article"  t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <h2 t-esc="o.user_id.company_id.name"/>
+                                <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"  class="img-responsive center-block" style="max-width: 100%;"/>
+                                <t t-set="uy_invoice_name" t-value="''"/>
+                                <t t-if="o.journal_id.edi_format_ids.filtered(lambda s:s.code=='edi_uy_cfe') and o.uy_document_code == '101'">
+                                    <t t-set="uy_invoice_name" t-value="'e-Ticket'"/>
+                                </t>
+                                <t t-if="o.journal_id.edi_format_ids.filtered(lambda s:s.code=='edi_uy_cfe') and o.uy_document_code == '102'">
+                                    <t t-set="uy_invoice_name" t-value="'Nota de Crédito de e-Ticket'"/>
+                                </t>
+                                <t t-if="o.journal_id.edi_format_ids.filtered(lambda s:s.code=='edi_uy_cfe') and o.uy_document_code == '103'">
+                                    <t t-set="uy_invoice_name" t-value="'Nota de Débito de e-Ticket'"/>
+                                </t>
+                                <t t-if="o.journal_id.edi_format_ids.filtered(lambda s:s.code=='edi_uy_cfe') and o.uy_document_code == '111'">
+                                    <t t-set="uy_invoice_name" t-value="'e-Factura'"/>
+                                </t>
+                                <t t-if="o.journal_id.edi_format_ids.filtered(lambda s:s.code=='edi_uy_cfe') and o.uy_document_code == '112'">
+                                    <t t-set="uy_invoice_name" t-value="'Nota de Crédito de e-Factura'"/>
+                                </t>
+                                <t t-if="o.journal_id.edi_format_ids.filtered(lambda s:s.code=='edi_uy_cfe') and o.uy_document_code == '113'">
+                                    <t t-set="uy_invoice_name" t-value="'Nota de Débito de e-Factura'"/>
+                                </t>
+
+                                <span t-field="o.company_id.street"/><br/>
+
+                                <h3 t-esc="'%s %s' %(uy_invoice_name, o.name or '')" />
+
+                                <address t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+
+                                User: <span t-field="o.user_id"/><br/>
+                                Date: <span t-field="o.invoice_date"/><br/>
+
+                            </div>
+                        </div>
+                        
+                        <table class="table table-sm o_main_table">
+                            <thead>
+                                <tr>
+                                    <th>Description</th>
+                                    <th class="text-right">Quantity</th>
+                                    <th class="text-right">Tax</th>
+                                    <th class="text-right">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.invoice_line_ids" t-as="line">
+                                    <td><span t-field="line.name"/></td>
+                                    <td class="text-right">
+                                        <span t-field="line.quantity"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-esc="', '.join(map(lambda x: (x.description or x.name), line.tax_ids))" id="line_tax_ids"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span class="text-nowrap" t-field="line.price_subtotal"/>
+                                        <t t-if="line.discount != 0.0">
+                                            <span t-field="line.discount"/>%
+                                        </t>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="row">
+                            <div class="col-9 ml-auto">
+                                <table class="table table-sm" style="page-break-inside: avoid;">
+                                    <tr class="border-black o_subtotal" style="">
+                                        <td><strong>Subtotal</strong></td>
+                                        <td class="text-right">
+                                            <span t-field="o.amount_untaxed"/>
+                                        </td>
+                                    </tr>
+                                    <t t-foreach="o.amount_by_group" t-as="amount_by_group">
+                                        <tr style="">
+                                            <t t-if="len(o.line_ids.filtered(lambda line: line.tax_line_id)) in [0, 1] and o.amount_untaxed == amount_by_group[2]">
+                                                <td><span class="text-nowrap" t-esc="amount_by_group[0]"/></td>
+                                                <td class="text-right o_price_total">
+                                                    <span class="text-nowrap" t-esc="amount_by_group[3]" />
+                                                </td>
+                                            </t>
+                                            <t t-else="">
+                                                <td>
+                                                    <span t-esc="amount_by_group[0]"/>
+                                                    <span class="text-nowrap"> on
+                                                        <t t-esc="amount_by_group[4]"/>
+                                                    </span>
+                                                </td>
+                                                <td class="text-right o_price_total">
+                                                    <span class="text-nowrap" t-esc="amount_by_group[3]"/>
+                                                </td>
+                                            </t>
+                                        </tr>
+                                    </t>
+                                    <tr class="border-black o_total">
+                                        <td><strong>Total</strong></td>
+                                        <td class="text-right">
+                                            <span class="text-nowrap" t-field="o.amount_total"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <p t-if="o.narration">
+                            <strong>Comment:</strong>
+                            <span t-field="o.narration"/>
+                        </p>
+                        <p t-if="o.fiscal_position_id.note">
+                            <span t-field="o.fiscal_position_id.note"/>
+                        </p>
+                        <div class="row" t-if="o.journal_id.edi_format_ids.filtered(lambda s:s.code=='edi_uy_cfe')">
+                            <div class="col-12">
+                                <img t-if="o.uy_qr_code" t-att-src="'data:image/png;base64,%s' %to_text(o.uy_qr_code)" style="width: 40mm;  height: 40mm;" />
+                            </div>
+                        </div>
+                        <div class="row" t-if="o.journal_id.edi_format_ids.filtered(lambda s:s.code=='edi_uy_cfe')" >
+                            <div class="col-xs-12 text-center">
+                                <span>Código de Seguridad: </span> <span t-esc="o.uy_security_code"/><br />
+                                <span>Fecha emisor: </span> <span t-esc="o.company_id.uy_resolution"/><br />
+                                <span>Puede verificar comprobante en </span> <br />
+                                <span t-esc="o.company_id.uy_verification_url" /><br />
+                                <span>IVA al día</span><br />
+                                <span>Nro CAE: </span> <span t-esc="o.uy_constancy"/><br />
+                                <span>Rango: </span> <span t-esc="o.uy_constancy_from"/> -  <span t-esc="o.uy_constancy_to"/><br />
+                                <span>Serie: </span> <span t-esc="o.uy_cfe_serie"/><br />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <record id="paperformat_ticket" model="report.paperformat">
+            <field name="name">Ticket</field>
+            <field name="default" eval="True" />
+            <field name="format">custom</field>
+            <field name="page_height">594</field>
+            <field name="page_width">80</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">10</field>
+            <field name="margin_bottom">5</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">5</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="account_invoices_ticket" model="ir.actions.report">
+            <field name="name">Ticket</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">l10n_uy_edi_pos.report_invoice_receipt</field>
+            <field name="report_file">l10n_uy_edi_pos.report_invoice_receipt</field>
+            <field name="print_report_name">(object._get_report_base_filename())</field>
+            <field name="attachment">(object.state == 'posted') and ((object.name or 'INV').replace('/','_')+'.pdf')</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="l10n_uy_edi_pos.paperformat_ticket" />
+            <field name="groups_id" eval="[(4, ref('account.group_account_invoice')),(4, ref('account.group_account_readonly'))]"/>
+        </record>
+
+    </data>
+</odoo>

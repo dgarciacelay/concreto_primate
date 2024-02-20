@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_partner_form">
+        <field name="name">res.partner.view.form.inherit.l10n.uy.vat</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+        	<xpath expr="//h1" position="after">
+                <div class="o_row" style="width: 100% !important;">
+                    <field name="uy_doc_type" placeholder="Document Type" colspan="1" nolabel="1" style="width: 70%" attrs="{'invisible':[('country_code','!=','UY')]}"/>
+	                <field name="vat" placeholder="Document number" colspan="3" nolabel="1" style="width: 29%" />
+	            </div>
+	            <div class="o_row" style="width: 100% !important;">
+                    <field name="uy_tradename" placeholder="Tradename" colspan="1" nolabel="1" style="width: 100%" attrs="{'invisible':[('country_code','!=','UY')]}"/>
+                </div>               
+	        </xpath>
+	        <!--xpath expr="//field['name'='vat']" position="attributes">
+                <attribute name='invisible'>True</attribute>            
+	        </xpath-->
+        </field>
+    </record>
+
+    <record id="view_res_partner_filter" model="ir.ui.view">
+        <field name="name">res.partner.inherit.l10n.uy.vat</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name='filter_domain'>['|', '|', '|', ('display_name', 'ilike', self), ('uy_tradename', 'ilike', self), ('ref', '=', self), ('email', 'ilike', self)]</attribute>
+	        </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_partner_tree">
+        <field name="name">res.partner.tree.inherit.l10n.uy.vat</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+	        <xpath expr="//field[@name='display_name']" position="after">
+                <field name="uy_tradename" optional="show" />
+	        </xpath>
+        </field>
+    </record>
+</odoo>

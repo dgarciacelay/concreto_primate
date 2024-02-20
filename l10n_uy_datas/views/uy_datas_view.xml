@@ -1,0 +1,49 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="view_uy_datas_tree">
+      <field name="name">uy.datas.tree</field>
+      <field name="model">uy.datas</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="code"/>
+          <field name="data_code"/>
+          <field name="active"/>
+        </tree>
+      </field>
+    </record>
+
+	<record id="view_uy_datas_from" model="ir.ui.view">
+        <field name="name">uy.datas.form</field>
+        <field name="model">uy.datas</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                    </group>
+                    <group>
+                        <field name="data_code"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+                <label for="description"/>
+                <field name="description" />
+            </form>
+        </field>
+    </record>
+    
+    <!--record id="action_uy_datas" model="ir.actions.act_window">
+        <field name="name">Uruguayan Datas</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">uy.datas</field>
+        <field name="view_type">form</field>
+        <field name="help">Display and manage the uruguayan datas.</field>
+    </record>
+
+    <menuitem name="Data Uruguay" id="menu_uy_datas" parent="base.next_id_9"
+      action="l10n_uy_datas.action_uy_datas" sequence="15" /-->
+    
+  </data>
+</odoo>

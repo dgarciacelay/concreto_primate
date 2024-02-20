@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="edi_uy_cfe" model="account.edi.format">
+            <field name="name">CFE (UY)</field>
+            <field name="code">edi_uy_cfe</field>
+        </record>
+
+    </data>
+</odoo>

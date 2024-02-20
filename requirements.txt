@@ -1,0 +1,3 @@
+git+https://github.com/pysimplesoap/pysimplesoap.git@master
+git+https://github.com/GrupoYACCK/pyCFE.git@0.0.9
+

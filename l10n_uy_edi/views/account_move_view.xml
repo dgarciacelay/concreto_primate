@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_move_form">
+        <field name="name">account.move.inherit.l10n.uy.edi</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field eval="100" name="priority"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_register_payment']" position="before">
+              <button name="action_uy_invoice_print" type="object" string="Print" attrs="{'invisible':['|', '|', ('state', '!=', 'posted'), ('is_move_sent', '=', True), ('move_type', 'not in', ('out_invoice', 'out_refund'))]}" class="oe_highlight"/>
+              <button name="action_uy_invoice_print" type="object" string="Print" attrs="{'invisible':['|', '|', ('state', '!=', 'posted'), ('is_move_sent', '=', False), ('move_type', 'not in', ('out_invoice', 'out_refund'))]}"/>
+            </xpath>
+            <xpath expr="//group[@id='header_right_group']" position="inside">
+              <field name="uy_is_cfe" invisible="True" />
+              <field name="uy_document_code" attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund'))],'required':[('move_type', 'in', ('out_invoice', 'out_refund')),('uy_is_cfe','=',True)]}" />
+              <field name="uy_reversed_entry_id" attrs="{'invisible': [('uy_document_code','not in',('102','112','103','113'))],'required':[('move_type', 'in', ('out_invoice', 'out_refund')),('uy_document_code','in',('102','112','103','113')),('uy_is_cfe','=',True)]}" 
+              domain="[('partner_id','=',partner_id),('move_type','in',('out_invoice','out_refund','in_invoice','in_refund')),('state','=','posted')]" />
+
+                <field name="uy_sales_mode" attrs="{'invisible': [('uy_document_code','not in',['121','122','123','124'])],'required':[('move_type', 'in', ('out_invoice', 'out_refund')),('uy_document_code','in',['121','122','123','124'])]}" />
+                <field name="uy_clause" attrs="{'invisible': [('uy_document_code','not in',['121','122','123','124'])],'required':[('move_type', 'in', ('out_invoice', 'out_refund')),('uy_document_code','in',['121','122','123','124'])]}" />
+                <field name="uy_transport" attrs="{'invisible': [('uy_document_code','not in',['121','122','123','124'])],'required':[('move_type', 'in', ('out_invoice', 'out_refund')),('uy_document_code','in',['121','122','123','124'])]}" />
+
+            </xpath>
+
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='discount']" position="after">
+              <field name="uy_invoice_indicator" attrs="{'required': [('parent.move_type', 'not in', ('in_invoice', 'in_refund','in_receipt')),('parent.uy_is_cfe','=',True)]}" optional="show" />
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']/form/sheet/group//field[@name='discount']" position="after">
+              <field name="uy_invoice_indicator" attrs="{'required': [('parent.move_type', 'not in', ('in_invoice', 'in_refund','in_receipt')),('parent.uy_is_cfe','=',True)]}"  />
+            </xpath>
+
+            <!--xpath expr="//field[@name='line_ids']/tree/field[@name='discount']" position="after">
+              <field name="uy_invoice_indicator" invisible="True" />
+            </xpath-->
+            
+        </field>
+    </record>
+
+</odoo>

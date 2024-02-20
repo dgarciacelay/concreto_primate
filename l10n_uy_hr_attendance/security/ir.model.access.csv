@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+l10n_uy_hr_attendance.access_uy_rain_hours,access_uy_rain_hours,l10n_uy_hr_attendance.model_uy_rain_hours,base.group_user,1,0,0,0
+l10n_uy_hr_attendance.access_uy_rain_hours,access_uy_rain_hours,l10n_uy_hr_attendance.model_uy_rain_hours,hr_attendance.group_hr_attendance_manager,1,1,1,1
+l10n_uy_hr_attendance.access_uy_hr_attendance_report,access_uy_hr_attendance_report,l10n_uy_hr_attendance.model_uy_hr_attendance_report,base.group_user,1,1,1,1
+

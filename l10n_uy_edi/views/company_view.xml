@@ -1,0 +1,26 @@
+<odoo>
+  <data>
+	<record model="ir.ui.view" id="view_company_form">
+        <field name="name">res.company.form.inherit.l10n.uy.edi</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+          <xpath expr="//sheet/notebook/page" position="inside">
+            <group string="Uruguayan Settings">
+              <group>
+                <field name="uy_sync_mode" />
+                <field name="uy_resolution" />
+                  <field name="uy_amount" />
+              </group>
+              <group>
+                <field name="uy_branch_code" />
+                <field name="uy_verification_url" />
+              </group>
+            </group>
+          </xpath>
+
+        </field>
+    </record>
+
+  </data>
+</odoo>

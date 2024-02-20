@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record model="ir.ui.view" id="sr_account_payment_form_view_add_field_sr_is_partial">
+        <field name="name">sr.account.payment.form.view.add.field.sr.is.partial</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="sr_is_partial" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

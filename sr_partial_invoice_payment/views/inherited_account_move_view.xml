@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="ir.ui.view" id="sr_move_line_extend_tree_grouped_view">
+        <field name="name">sr.move.line.tree.grouped.add.field.in.view</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_move_line_tree_grouped"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='matching_number']" position="after">
+                <field name="partial_matching_number"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

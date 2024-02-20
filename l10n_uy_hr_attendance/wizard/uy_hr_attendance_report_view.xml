@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="uy_hr_attendance_report_form" model="ir.ui.view">
+        <field name="name">Attendance Report</field>
+        <field name="model">uy.hr.attendance.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <group name="filters">
+                    <group>
+                        <field name="start_date"/>
+
+                    </group>
+                    <group>
+                        <field name="end_date"/>
+                    </group>
+
+                </group>
+                <footer>
+                    <button name="button_export_xlsx" string="Export XLSX" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_uy_hr_attendance_report" model="ir.actions.act_window">
+        <field name="name">Attendance Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">uy.hr.attendance.report</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="uy_hr_attendance_report_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem name="Attendance Report" id="uy_hr_attendance_report_menu" parent="menu_hr_attendance_report_root"
+      action="l10n_uy_hr_attendance.action_uy_hr_attendance_report" groups="hr_attendance.group_hr_attendance_user" sequence="10" />
+
+</odoo>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="model_account_move_action_check_cfe_pdf_status" model="ir.actions.server">
+            <field name="name">Check PDF</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="binding_view_types">form</field>
+            <field name="state">code</field>
+            <field name="code">records.action_check_cfe_pdf_status()</field>
+        </record>
+
+        <record model="ir.cron" id="sync_auto_send">
+            <field name="name">CFE: Check PDF</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="state">code</field>
+            <field name="model_id" ref="account.model_account_move" />
+            <field name="code">model.action_check_cfe_pdf_from_moves()</field>
+            <field name="active" eval="False"/>
+        </record>
+    </data>
+</odoo>

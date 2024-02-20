@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+
+    <t t-extend="ShowPaymentInfo">
+        <t t-jquery=".outstanding_credit_assign" t-operation="attributes">
+            <attribute name="t-att-data-move-type">line.move_type</attribute>
+        </t>
+    </t>
+
+</templates>

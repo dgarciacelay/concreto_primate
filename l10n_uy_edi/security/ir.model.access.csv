@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+l10n_uy_edi.access_uy_cfe_wizard,access_uy_cfe_wizard,l10n_uy_edi.model_uy_cfe_wizard,base.group_user,1,1,1,1

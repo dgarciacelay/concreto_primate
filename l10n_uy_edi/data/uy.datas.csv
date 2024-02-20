@@ -1,0 +1,112 @@
+id,name,code,description,data_code
+uy_document_01,e-Ticket,101,,UY.DOCUMENT.CODE
+uy_document_02,Nota de Crédito de e-Ticket,102,,UY.DOCUMENT.CODE
+uy_document_03,Nota de Débito de e-Ticket,103,,UY.DOCUMENT.CODE
+uy_document_04,e-Factura,111,,UY.DOCUMENT.CODE
+uy_document_05,Nota de Crédito de e-Factura,112,,UY.DOCUMENT.CODE
+uy_document_06,Nota de Débito de e-Factura,113,,UY.DOCUMENT.CODE
+uy_document_07,eFactura de exportación,121,,UY.DOCUMENT.CODE
+uy_document_08,Nota de crédito de eFactura de exportación,122,,UY.DOCUMENT.CODE
+uy_document_09,Nota de débito de eFactura de exportación,123,,UY.DOCUMENT.CODE
+uy_document_10,eRemito de exportación,124,,UY.DOCUMENT.CODE
+uy_document_11,eTicket Venta por cuenta ajena,131,,UY.DOCUMENT.CODE
+uy_document_12,NC eTicket Venta por cuenta ajena,132,,UY.DOCUMENT.CODE
+uy_document_13,ND eTicket venta por cuenta ajena,133,,UY.DOCUMENT.CODE
+uy_document_14,eFactura Venta por cuenta ajena,141,,UY.DOCUMENT.CODE
+uy_document_15,NC eFactura Venta por cuenta ajena,142,,UY.DOCUMENT.CODE
+uy_document_16,ND eFactura venta por cuenta ajena,143,,UY.DOCUMENT.CODE
+uy_document_17,eBoleta de entrada,151,,UY.DOCUMENT.CODE
+uy_document_18,NC eBoleta de entrada ,152,,UY.DOCUMENT.CODE
+uy_document_19,ND eBoleta de entrada,153,,UY.DOCUMENT.CODE
+uy_document_20,eRemito,181,,UY.DOCUMENT.CODE
+uy_document_21,eResguardo,182,,UY.DOCUMENT.CODE
+uy_document_22,e-Ticket Contingencia,201,,UY.DOCUMENT.CODE
+uy_document_23,Nota de Crédito de e-Ticket Contingencia,202,,UY.DOCUMENT.CODE
+uy_document_24,Nota de Débito de e-Ticket Contingencia,203,,UY.DOCUMENT.CODE
+uy_document_25,e-Factura Contingencia,211,,UY.DOCUMENT.CODE
+uy_document_26,Nota de Crédito de e-Factura Contingencia,212,,UY.DOCUMENT.CODE
+uy_document_27,Nota de Débito de e-Factura Contingencia,213,,UY.DOCUMENT.CODE
+uy_currency_01,Peso argentino,ARS,,UY.CURRENCY.CODE
+uy_currency_02,Real brasileño,BRL,,UY.CURRENCY.CODE
+uy_currency_03,Dólar canadiense,CAD,,UY.CURRENCY.CODE
+uy_currency_04,Peso chileno,CLP,,UY.CURRENCY.CODE
+uy_currency_05,Yuan Renminbi de China,CNY,,UY.CURRENCY.CODE
+uy_currency_06,Peso colombiano,COP,,UY.CURRENCY.CODE
+uy_currency_07,Euro,EUR,,UY.CURRENCY.CODE
+uy_currency_08,Yen japonés,JPY,,UY.CURRENCY.CODE
+uy_currency_09,Peso mexicano,MXN,,UY.CURRENCY.CODE
+uy_currency_10,Guaraní paraguayo,PYG,,UY.CURRENCY.CODE
+uy_currency_11,Nuevo sol peruano,PEN,,UY.CURRENCY.CODE
+uy_currency_12,Dólar estadounidense,USD,,UY.CURRENCY.CODE
+uy_currency_13,Peso uruguayo,UYU,,UY.CURRENCY.CODE
+uy_currency_14,Bolívar fuerte venezolano,VEF,,UY.CURRENCY.CODE
+uy_currency_15,Unidad Indexada uruguaya,UYI,,UY.CURRENCY.CODE
+uy_currency_16,Unidad Reajustable uruguaya,UYR,,UY.CURRENCY.CODE
+uy_unit_01,Kilos,kg,,UY.UNIT.CODE
+uy_unit_02,Litros,lt,,UY.UNIT.CODE
+uy_unit_03,Toneladas,ton,,UY.UNIT.CODE
+uy_unit_04,Unidades,un,,UY.UNIT.CODE
+uy_unit_05,No corresponde,N/A,,UY.UNIT.CODE
+uy_doc_type_01,RUC,2,,UY.DOC.TYPE
+uy_doc_type_02,C.I.,3,,UY.DOC.TYPE
+uy_doc_type_03,Otros,4,,UY.DOC.TYPE
+uy_doc_type_04,Pasaporte,5,,UY.DOC.TYPE
+uy_doc_type_05,DNI,6,,UY.DOC.TYPE
+uy_tax_01,Excento,0,,UY.TAX.TYPE
+uy_tax_02,Tasa Mínima,10,,UY.TAX.TYPE
+uy_tax_03,Tasa Básica,22,,UY.TAX.TYPE
+uy_indicator_01,Exento de IVA,1,,UY.LINE.INDICATOR
+uy_indicator_02,Tasa Mínima,2,,UY.LINE.INDICATOR
+uy_indicator_03,Tasa Básica,3,,UY.LINE.INDICATOR
+uy_indicator_04,Otra tasa,4,,UY.LINE.INDICATOR
+uy_indicator_05,Entrega gratuita,5,,UY.LINE.INDICATOR
+uy_indicator_06,Producto o servicio no facturable,6,,UY.LINE.INDICATOR
+uy_indicator_07,Producto o servicio no facturable negativo,7,,UY.LINE.INDICATOR
+uy_indicator_08,Ítem a rebajar en e-remitos y en e-remitos de exportación,8,,UY.LINE.INDICATOR
+uy_indicator_09,Ítem a anular en resguardos,9,,UY.LINE.INDICATOR
+uy_indicator_10,Exportación y asimiladas,10,,UY.LINE.INDICATOR
+uy_indicator_11,Impuesto percibido,11,,UY.LINE.INDICATOR
+uy_indicator_12,IVA en suspenso,12,,UY.LINE.INDICATOR
+uy_payment_method_01,Contado,1,,UY.PAYMENT.METHOD
+uy_payment_method_02,Credito,2,,UY.PAYMENT.METHOD
+uy_print_01,Representación impresa del CFE en formato A4,1,,UY.EFACTURA.PRINT.MODE
+uy_print_02,Representación impresa del CFE en formato Papel termico,2,,UY.EFACTURA.PRINT.MODE
+uy_print_03,Representación grafica del CFE generado por el sistema del cliente,3,,UY.EFACTURA.PRINT.MODE
+uy_efactura_error_01,El RUT recibido no corresponde con ningun cliente,01,,UY.EFACTURA.ERROR
+uy_efactura_error_02,Usuario o clave incorrecta,02,,UY.EFACTURA.ERROR
+uy_efactura_error_03,Error de sintaxis en sobre xml,03,,UY.EFACTURA.ERROR
+uy_efactura_error_04,El RUT recibido no corresponde con el RUT del sobre,04,,UY.EFACTURA.ERROR
+uy_efactura_error_05,El parametro impresion no es válido,05,,UY.EFACTURA.ERROR
+uy_efactura_error_06,DigestValue inválido,06,,UY.EFACTURA.ERROR
+uy_efactura_error_06_01,Numero de Sobre ya existe en el sistema para la sucursal,07,,UY.EFACTURA.ERROR
+uy_efactura_error_07,No cumple validaciones según Formato de sobre (esquema XSD),C01,,UY.EFACTURA.ERROR
+uy_efactura_error_08,RUTemisor del sobre no coincide con el emisor del comprobante,C02,,UY.EFACTURA.ERROR
+uy_efactura_error_09,No se encontró autorización de emisión para el tipo de CFE,C03,,UY.EFACTURA.ERROR
+uy_efactura_error_10,Código de sucursal invalido,C04,,UY.EFACTURA.ERROR
+uy_efactura_error_11,Numero de documento del receptor inválido,C05,,UY.EFACTURA.ERROR
+uy_efactura_error_12,Las eFacturas y notas de corrección son sólo para operaciones entre contribuyentes,C06,,UY.EFACTURA.ERROR
+uy_efactura_error_13,Los eTickets y notas de corrección son sólo para operaciones con consumidores finales,C07,,UY.EFACTURA.ERROR
+uy_efactura_error_14,Para todos los tipos de eTickets con importes mayores a 10000UI se debe ingresar receptor,C08,,UY.EFACTURA.ERROR
+uy_efactura_error_15,Código de moneda inválido o inexistente,C09,,UY.EFACTURA.ERROR
+uy_efactura_error_16,Para este tipo de CFE debe ingresar al menos una referencia,C10,,UY.EFACTURA.ERROR
+uy_efactura_error_17,Monto total de un renglón no coincide con cálculos sobre el ítem,C11,,UY.EFACTURA.ERROR
+uy_efactura_error_18,Cantidad de renglones declarados en el encabezado no coincide con los reales,C12,,UY.EFACTURA.ERROR
+uy_efactura_error_19,Monto total del CFE no coincide con los datos desde renglones,C13,,UY.EFACTURA.ERROR
+uy_efactura_error_20,Monto total del CFE no coincide con los datos declarados en <totales>,C14,,UY.EFACTURA.ERROR
+uy_efactura_error_21,El comprobante de contingencia ya existe en el sistema,C15,,UY.EFACTURA.ERROR
+uy_efactura_error_22,Serie o numero del comprobante de contingencia no corresponde a la autorización de emisión,C16,,UY.EFACTURA.ERROR
+uy_clause_01,N/A,N/A,,UY.CLAUSE
+uy_clause_02,CIF,CIF,,UY.CLAUSE
+uy_clause_03,FOB,FOB,,UY.CLAUSE
+uy_transport_01,Marítimo,1,,UY.TRANSPORT
+uy_transport_02,Aéreo,2,,UY.TRANSPORT
+uy_transport_03,Terrestre,3,,UY.TRANSPORT
+uy_transport_04,N/A,8,,UY.TRANSPORT
+uy_transport_05,Otro,9,,UY.TRANSPORT
+uy_sale_mode_01,Régimen General – exportación de bienes,1,,UY.SALES.MODE
+uy_sale_mode_02,Consignacion,2,,UY.SALES.MODE
+uy_sale_mode_03,Precio Revisable,3,,UY.SALES.MODE
+uy_sale_mode_04,Bienes propios  a exclaves aduaneros,4,,UY.SALES.MODE
+uy_sale_mode_05,Régimen TAX FREE – Dto. Nº 378/2012,80,,UY.SALES.MODE
+uy_sale_mode_06,Régimen General – exportación de servicios,90,,UY.SALES.MODE
+uy_sale_mode_07,Otras transacciones,99,,UY.SALES.MODE

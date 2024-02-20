@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="report_invoice_document" inherit_id="account.report_invoice_document">
+		<xpath expr="//h2" position="replace">
+			<h2>
+                <t t-set="uy_invoice_name" t-value="''"/>
+                <t t-if="o.journal_id.edi_format_ids.filtered(lambda s:s.code=='edi_uy_cfe') and o.uy_document_code == '101'">
+					<t t-set="uy_invoice_name" t-value="'e-Ticket'"/>
+				</t>
+				<t t-if="o.journal_id.edi_format_ids.filtered(lambda s:s.code=='edi_uy_cfe') and o.uy_document_code == '102'">
+					<t t-set="uy_invoice_name" t-value="'Nota de Crédito de e-Ticket'"/>
+				</t>
+				<t t-if="o.journal_id.edi_format_ids.filtered(lambda s:s.code=='edi_uy_cfe') and o.uy_document_code == '103'">
+					<t t-set="uy_invoice_name" t-value="'Nota de Débito de e-Ticket'"/>
+				</t>
+				<t t-if="o.journal_id.edi_format_ids.filtered(lambda s:s.code=='edi_uy_cfe') and o.uy_document_code == '111'">
+					<t t-set="uy_invoice_name" t-value="'e-Factura'"/>
+				</t>
+				<t t-if="o.journal_id.edi_format_ids.filtered(lambda s:s.code=='edi_uy_cfe') and o.uy_document_code == '112'">
+					<t t-set="uy_invoice_name" t-value="'Nota de Crédito de e-Factura'"/>
+				</t>
+				<t t-if="o.journal_id.edi_format_ids.filtered(lambda s:s.code=='edi_uy_cfe') and o.uy_document_code == '113'">
+					<t t-set="uy_invoice_name" t-value="'Nota de Débito de e-Factura'"/>
+				</t>
+
+                <span t-if="o.move_type == 'out_invoice' and o.state == 'posted'">
+                	<t t-if="uy_invoice_name">
+						<t t-esc="uy_invoice_name" />
+					</t>
+					<t t-else="">
+						Invoice
+					</t>
+                </span>
+                <span t-if="o.move_type == 'out_invoice' and o.state == 'draft'">Draft 
+                	<t t-if="uy_invoice_name">
+						<t t-esc="uy_invoice_name" />
+					</t>
+					<t t-else="">
+						Invoice
+					</t>
+                </span>
+                <span t-if="o.move_type == 'out_invoice' and o.state == 'cancel'">Cancelled 
+                	<t t-if="uy_invoice_name">
+						<t t-esc="uy_invoice_name" />
+					</t>
+					<t t-else="">
+						Invoice
+					</t>
+                </span>
+                <span t-if="o.move_type == 'out_refund'">
+                	<t t-if="uy_invoice_name">
+						<t t-esc="uy_invoice_name" />
+					</t>
+					<t t-else="">
+						Credit Note
+					</t>
+                </span>
+                <span t-if="o.move_type == 'in_refund'">Vendor Credit Note</span>
+                <span t-if="o.move_type == 'in_invoice'">Vendor Bill</span>
+                <span t-if="o.name != '/'" t-field="o.name"/>
+
+            </h2>
+		</xpath>
+		
+		<xpath expr="//div[@id='qrcode']" position="after" >
+			<table t-if="o.journal_id.edi_format_ids.filtered(lambda s:s.code=='edi_uy_cfe')" >
+				<tr>
+			        <td style="width: 80%;">
+		            	<span>Código de Seguridad: </span> <span t-esc="o.uy_security_code"/><br />
+		            	<span>Fecha emisor: </span> <span t-esc="o.company_id.uy_resolution"/><br />
+		            	<span>Puede verificar comprobante en </span> <br />
+		            	<span t-esc="o.company_id.uy_verification_url" /><br />
+		            	<span>IVA al día</span><br />
+		            	<span>Nro CAE: </span> <span t-esc="o.uy_constancy"/><br />
+		            	<span>Rango: </span> <span t-esc="o.uy_constancy_from"/> -  <span t-esc="o.uy_constancy_to"/><br />
+		            	<span>Serie: </span> <span t-esc="o.uy_cfe_serie"/><br />
+		            </td>
+
+		            <td>
+		            	<t t-if="o.uy_qr_id or o.uy_url_code and o.uy_is_cfe and o.uy_qr_code">
+			            	<br />
+				        	<!--img t-if="o.uy_qr_code" t-att-src="'data:image/png;base64,%s' %to_text(o.uy_qr_code)"
+								style="width: 40mm;  height: 40mm;" /-->
+							<img t-if="o.uy_qr_code" t-att-src="'data:image/png;base64,%s' % o.uy_qr_code.decode('utf-8')" style="width: 40mm;  height: 40mm;"/>
+						</t>
+		            </td>
+	        	</tr>
+	        </table>		
+    	</xpath>
+    	
+	</template>
+
+</odoo>

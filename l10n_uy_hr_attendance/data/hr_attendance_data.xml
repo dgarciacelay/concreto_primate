@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <!-- Top menu item -->
+        <menuitem name="Reporting" id="menu_hr_attendance_report_root"
+                  parent="hr_attendance.menu_hr_attendance_root"
+                  groups="hr_attendance.group_hr_attendance_user" sequence="60"/>
+
+        <record id="hr_attendance.menu_hr_attendance_report" model="ir.ui.menu">
+            <field name="parent_id" ref="menu_hr_attendance_report_root"/>
+        </record>
+
+</odoo>

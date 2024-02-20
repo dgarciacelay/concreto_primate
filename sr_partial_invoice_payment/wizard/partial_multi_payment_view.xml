@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="ir.ui.view" id="sr_partial_multi_payment_wizard_form_view">
+        <field name="name">sr.partial.multi.payment.wizard.form.view</field>
+        <field name="model">partial.multi.payment.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Partial Multi Payment Wizard">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="0"/>
+                            <field name="partner_id"/>
+                            <field name="company_currency_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="partner_type" readonly="1"/>
+                            <field name="payment_type" readonly="1"/>
+                        </group>
+                    </group>
+                    <separator string="Payment"/>
+                    <group>
+                        <group>
+                            <field name="move_line_id"/>
+                            <field name="move_id" invisible="1"/>
+                            <field name="currency_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="amount_residual" force_save="1" readonly="1" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                            <field
+                                name="amount_residual_currency"
+                                widget="monetary"
+                                readonly="1"
+                                attrs="{'invisible': [('move_line_id', '=', False)]}"
+                                force_save="1"
+                            />
+                        </group>
+                        <group>
+                            <field name="remain_amount" force_save="1" readonly="1" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                            <field
+                                name="remain_amount_currency"
+                                widget="monetary"
+                                force_save="1"
+                                readonly="1"
+                                attrs="{'invisible': [('move_line_id', '=', False)]}"
+                            />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Move Lines">
+                            <field name="move_line_ids" force_save="1" context="{'default_multi_partial_payment_id': id, 'default_partner_id': partner_id, 'default_payment_move_id': move_id, 'default_payment_currency_id': currency_id}">
+                                <tree editable="bottom">
+                                    <field name="multi_partial_payment_id" invisible="1"/>
+                                    <field name="partner_id" invisible="1"/>
+                                    <field name="payment_move_id" invisible="1"/>
+                                    <field name="payment_currency_id" invisible="1"/>
+                                    <field name="company_currency_id" invisible="1"/>
+                                    <field name="move_id" domain="[('partner_id', '=', partner_id), ('id', '!=', payment_move_id)]"/>
+                                    <field name="currency_id"/>
+                                    <field name="amount_residual" widget='monetary' options="{'currency_field': 'company_currency_id'}"/>
+                                    <field name="amount_residual_currency"/>
+                                    <field name="amount_to_pay" readonly="1" widget='monetary' options="{'currency_field': 'company_currency_id'}"/>
+                                    <field name="curr_amount_to_pay" widget="monetary" options="{'currency_field': 'payment_currency_id'}"/>
+                                </tree>
+                                <form>
+                                    <sheet>
+                                        <group>
+                                            <group>
+                                                <field name="move_id"/>
+                                                <field name="multi_partial_payment_id" invisible="1"/>
+                                            </group>
+                                            <group>
+                                                <field name="partner_id" invisible="1"/>
+                                                <field name="payment_move_id" invisible="1"/>
+                                                <field name="payment_currency_id" invisible="1"/>
+                                                <field name="company_currency_id" invisible="1"/>
+                                                <field name="currency_id"/>
+                                            </group>
+                                        </group>
+                                        <separator/>
+                                        <group>
+                                            <group>
+                                                <field name="amount_residual" widget='monetary' options="{'currency_field': 'company_currency_id'}"/>
+                                                <field name="amount_residual_currency" widget='monetary'/>
+                                            </group>
+                                            <group>
+                                                <field name="amount_to_pay" widget='monetary' options="{'currency_field': 'company_currency_id'}"/>
+                                                <field name="curr_amount_to_pay" widget="monetary" options="{'currency_field': 'payment_currency_id'}"/>
+                                            </group>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button
+                        string="Register Payment"
+                        name="sr_register_payment"
+                        type="object"
+                        class="oe_highlight pull-right"
+                    />
+                    <button string="Cancel" class="btn btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="sr_partial_multi_payment_wizard_action" model="ir.actions.act_window">
+        <field name="name">Payment Multi Wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">partial.multi.payment.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="sr_partial_multi_payment_wizard_form_view"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="sr_partial_multi_payment_wizard_menu"
+        name="Partial Payment"
+        parent="account.menu_finance_receivables"
+        sequence="16"
+        action="sr_partial_invoice_payment.sr_partial_multi_payment_wizard_action"/>
+</odoo>

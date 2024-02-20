@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="sr_sequence_partial_matching_number_seq" model="ir.sequence">
+        <field name="name">Partial Matching sequence</field>
+        <field name="code">account.move.line</field>
+        <field name="prefix">PM</field>
+    </record>
+</odoo>

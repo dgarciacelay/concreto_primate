@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_form_uy_cfe_wizard">
+        <field name="name">uy.cfe.wizard.form</field>
+        <field name="model">uy.cfe.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="uy_server" required="True"/>
+                        <field name="uy_server_url" required="True"/>
+                        <field name="uy_username" attrs="{'required':[('uy_server','in',['efactura','factura_express'])],'invisible':[('uy_server','in',['biller'])]}"/>
+                        <field name="uy_password" attrs="{'required':[('uy_server','in',['efactura','biller','factura_express'])],'invisible':[('uy_server','not in',['efactura','biller','factura_express'])]}"/>
+                        <field name="uy_branch_code" />
+                    </group>
+                    <group>
+                        <field name="uy_efactura_print_mode" attrs="{'required':[('uy_server','in',['efactura'])],'invisible':[('uy_server','not in',['efactura'])]}"/>
+                        <field name="uy_company_id" attrs="{'required':[('uy_server','in',['factura_express'])],'invisible':[('uy_server','not in',['factura_express'])]}"/>
+                        <field name="uy_resolution" />
+                        <field name="uy_verification_url" />
+                        <field name="company_id"/>
+                    </group>
+                </group>
+                <footer>
+                    <button
+                        name="appy_configuration"
+                        string="Confirm"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

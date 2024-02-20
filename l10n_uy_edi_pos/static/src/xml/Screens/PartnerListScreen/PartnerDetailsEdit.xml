@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="PartnerDetailsEdit" t-inherit="point_of_sale.PartnerDetailsEdit" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('partner-details-left')]//div[3]" position="after">
+            <div class="partner-detail">
+                <t t-esc="console.log(env.pos)" />
+                <span class="label">City</span>
+                <select class="detail" name="city_id"
+                        t-on-change="captureChange">
+                    <option value="">None</option>
+                    <t t-foreach="env.pos.cities" t-as="city" t-key="city.id">
+                        <option t-if="props.partner.state_id[0] == city.state_id"
+                                t-att-value="city.id"
+                                t-att-selected="props.partner.city_id ? ((city.id === props.partner.city_id[0]) ? true : undefined) : undefined">
+                            <t t-esc="city.name" />
+                        </option>
+                    </t>
+                </select>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('partner-details-right')]//div[5]" position="after">
+            <div class="partner-detail">
+                <span class="label">Document Type</span>
+                <select class="detail" name="uy_doc_type"
+                        t-on-change="captureChange">
+                    <option value="">None</option>
+                    <t t-foreach="env.pos.uy_doc_types" t-as="uy_doc_type" t-key="uy_doc_type[0]">
+                        <option t-att-value="uy_doc_type[0]"
+                                t-att-selected="props.partner.uy_doc_type ? ((uy_doc_type[0] === props.partner.uy_doc_type) ? true : undefined) : undefined">
+                            <t t-esc="uy_doc_type[1]" />
+                        </option>
+                    </t>
+                </select>
+            </div>
+
+        </xpath>
+    </t>
+
+</templates>

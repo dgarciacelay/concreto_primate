@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="ClientDetailsEdit" t-inherit="point_of_sale.ClientDetailsEdit" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('client-details-left')]//div[3]" position="after">
+            <div class="client-detail">
+                <span class="label">City</span>
+                <select class="detail client-address-cities needsclick" name="city_id"
+                        t-on-change="captureChange">
+                    <option value="">None</option>
+                    <t t-foreach="env.pos.cities" t-as="city" t-key="city.id">
+                        <option t-if="props.partner.state_id[0] == city.state_id[0]"
+                                t-att-value="city.id"
+                                t-att-selected="props.partner.city_id ? ((city.id === props.partner.city_id[0]) ? true : undefined) : undefined">
+                            <t t-esc="city.name" />
+                        </option>
+                    </t>
+                </select>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('client-details-right')]//div[4]" position="after">
+            <div class="client-detail">
+                <span class="label">Document Type</span>
+                
+                <select class="detail client-document-type needsclick" name="uy_doc_type"
+                        t-on-change="captureChange">
+                    <option value="">None</option>
+                    <t t-foreach="env.pos.uy_doc_types" t-as="uy_doc_type" t-key="uy_doc_type[0]">
+                        <option t-att-value="uy_doc_type[0]"
+                                t-att-selected="props.partner.uy_doc_type ? ((uy_doc_type[0] === props.partner.uy_doc_type) ? true : undefined) : undefined">
+                            <t t-esc="uy_doc_type[1]" />
+                        </option>
+                    </t>
+                </select>
+            </div>
+        </xpath>
+    </t>
+
+</templates>
